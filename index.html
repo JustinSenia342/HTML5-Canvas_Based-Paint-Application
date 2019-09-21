@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<!--Project By: Justin Senia, COSC 231 WINTER 2016-->
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title> Programming Project #4 - Web Drawing App by Justin Senia </title>
+
+<!--Positioning all elements for GUI-->
+<style>
+div{
+	position: absolute;
+	display: inline;
+	border-style: solid;
+	border-color: black;
+	border-width: 3px;
+}
+
+#container{
+	min-height: 525px;
+	min-width: 762px;
+	background-color: #DCDCDC;
+}
+
+#brushContainer{
+	left: 525px;
+	top: 10px;
+	min-height: 110px;
+	min-width: 221px;
+}
+
+#colorPickerContainer{
+	left: 525px;
+	top: 150px;
+	min-height: 165px;
+	min-width: 221px;
+}
+
+#bgColorPickerContainer{
+	left: 525px;
+	top: 345px;
+	min-height: 165px;
+	min-width: 221px;
+}
+
+#labelBrushPicker{
+	min-height: 50px;
+	min-width: 216px;
+	background-color: white;
+}
+#brushSquare{
+	min-height: 50px;
+	min-width: 50px;
+	top: 55px;
+	left: 0px;
+}
+#brushCircle{
+	min-height: 50px;
+	min-width: 50px;
+	top: 55px;
+	left: 55px;
+}
+#brushDiag{
+	min-height: 50px;
+	min-width: 50px;
+	top: 55px;
+	left: 110px;
+}
+#brushEraser{
+	min-height: 50px;
+	min-width: 50px;
+	top: 55px;
+	left: 165px;
+}
+
+#labelColorPicker{
+	min-height: 50px;
+	min-width: 216px;
+	background-color: white;
+}
+#colorBlack{
+	min-height: 50px;
+	min-width: 50px;
+	top: 55px;
+	left: 0px;
+	background-color: #000000;
+}
+#colorRed{
+	min-height: 50px;
+	min-width: 50px;
+	top: 55px;
+	left: 55px;
+	background-color: #FF0000;
+}
+#colorBlue{
+	min-height: 50px;
+	min-width: 50px;
+	top: 55px;
+	left: 110px;
+	background-color: #0000FF;
+}
+#colorYellow{
+	min-height: 50px;
+	min-width: 50px;
+	top: 55px;
+	left: 165px;
+	background-color: #FFFF00;
+}
+#colorGreen{
+	min-height: 50px;
+	min-width: 50px;
+	top: 110px;
+	left: 0px;
+	background-color: #00FF00;
+}
+#colorPurple{
+	min-height: 50px;
+	min-width: 50px;
+	top: 110px;
+	left: 55px;
+	background-color: #663399;
+}
+#colorWhite{
+	min-height: 50px;
+	min-width: 50px;
+	top: 110px;
+	left: 110px;
+	background-color: #FFFFFF;
+}
+#colorBrown{
+	min-height: 50px;
+	min-width: 50px;
+	top: 110px;
+	left: 165px;
+	background-color: #8B4513;
+}
+
+#labelBgColorPicker{
+	min-height: 50px;
+	min-width: 216px;
+	background-color: white;
+}
+#bgColorBlack{
+	min-height: 50px;
+	min-width: 50px;
+	top: 55px;
+	left: 0px;
+	background-color: #D3D3D3;
+}
+#bgColorRed{
+	min-height: 50px;
+	min-width: 50px;
+	top: 55px;
+	left: 55px;
+	background-color: #FFB6C1;
+}
+#bgColorBlue{
+	min-height: 50px;
+	min-width: 50px;
+	top: 55px;
+	left: 110px;
+	background-color: #E0FFFF;
+}
+#bgColorYellow{
+	min-height: 50px;
+	min-width: 50px;
+	top: 55px;
+	left: 165px;
+	background-color: #FAFAD2;
+}
+#bgColorGreen{
+	min-height: 50px;
+	min-width: 50px;
+	top: 110px;
+	left: 0px;
+	background-color: #F5FFFA;
+}
+#bgColorPurple{
+	min-height: 50px;
+	min-width: 50px;
+	top: 110px;
+	left: 55px;
+	background-color: #DDA0DD;
+}
+#bgColorWhite{
+	min-height: 50px;
+	min-width: 50px;
+	top: 110px;
+	left: 110px;
+	background-color: #FFFFFF;
+}
+#bgColorBrown{
+	min-height: 50px;
+	min-width: 50px;
+	top: 110px;
+	left: 165px;
+	background-color: #FFE4B5;
+}
+</style>
+</head>
+
+
+<body>
+
+	<div id="container"> <!--contains all inner elements-->
+
+		<!--creating and positioning HTML5 Canvas-->
+		<canvas id="myCanvas" width="500" height="500" style="background-color:white;position:absolute;border:1px solid #000000;left:10px;top:10px;">
+		</canvas>
+
+		<!--Creating brush container for brush selection and associating proper graphics, also 
+		associating brush selection function with divs-->
+		<div id="brushContainer">
+			<div id="labelBrushPicker"><img src="BrushesGraphic.jpg" alt="brushesImg"></div>
+			<div id="brushSquare" onClick="brushSelect(0)"><img src="SquareGraphic.jpg" alt="sqrImg" width="50" height="50"></div>
+			<div id="brushCircle" onClick="brushSelect(1)"><img src="CircleGraphic.jpg" alt="circImg" width="50" height="50"></div>
+			<div id="brushDiag" onClick="brushSelect(2)"><img src="DiagGraphic.jpg" alt="diagImg" width="50" height="50"></div>
+			<div id="brushEraser" onClick="brushSelect(3)"><img src="EraserGraphic.jpg" alt="ersrImg" width="50" height="50"></div>
+		</div>
+		
+		<!--Creating Color picker container for color selection and and associating selection functions with divs-->
+		<div id="colorPickerContainer">
+			<div id="labelColorPicker"><img src="ColorGraphic.jpg" alt="colorImg"></div>
+			<div id="colorBlack" onClick="colorSelect(0)"></div>
+			<div id="colorRed" onClick="colorSelect(1)"></div>
+			<div id="colorBlue" onClick="colorSelect(2)"></div>
+			<div id="colorYellow" onClick="colorSelect(3)"></div>
+			<div id="colorGreen" onClick="colorSelect(4)"></div>
+			<div id="colorPurple" onClick="colorSelect(5)"></div>
+			<div id="colorWhite" onClick="colorSelect(6)"></div>
+			<div id="colorBrown" onClick="colorSelect(7)"></div>
+		</div>
+		
+		<!--Creating Background Color picker container for Background color selection and and associating selection 
+		functions with divs-->
+		<div id="bgColorPickerContainer">
+			<div id="labelBgColorPicker"><img src="BgColorGraphic.jpg" alt="bgColorImg"></div>
+			<div id="bgColorBlack" onClick="bgColorSelect(0)"></div>
+			<div id="bgColorRed" onClick="bgColorSelect(1)"></div>
+			<div id="bgColorBlue" onClick="bgColorSelect(2)"></div>
+			<div id="bgColorYellow" onClick="bgColorSelect(3)"></div>
+			<div id="bgColorGreen" onClick="bgColorSelect(4)"></div>
+			<div id="bgColorPurple" onClick="bgColorSelect(5)"></div>
+			<div id="bgColorWhite" onClick="bgColorSelect(6)"></div>
+			<div id="bgColorBrown" onClick="bgColorSelect(7)"></div>
+		</div>
+	</div>
+	
+	<script>
+	
+
+		//creating  canvas variable and canvas context variable
+		var canvas = document.getElementById("myCanvas");
+		var ctx = canvas.getContext("2d");
+
+		//declaring and initializing coordinate variables that will keep track of mouse location
+		//created as global variables so they can be used by multiple functions
+		var x = 0;
+		var y = 0;
+		
+		//creating arrays for keeping track of div element addresses brushes/colors/Bgcolors
+		var brushArray = [document.getElementById('brushSquare'),
+						  document.getElementById('brushCircle'),
+						  document.getElementById('brushDiag'),
+						  document.getElementById('brushEraser')];
+		var colorArray = [document.getElementById('colorBlack'),
+						  document.getElementById('colorRed'),
+						  document.getElementById('colorBlue'),
+						  document.getElementById('colorYellow'),
+						  document.getElementById('colorGreen'),
+						  document.getElementById('colorPurple'),
+						  document.getElementById('colorWhite'),
+						  document.getElementById('colorBrown')];
+		var bgColorArray = [document.getElementById('bgColorBlack'),
+						    document.getElementById('bgColorRed'),
+						    document.getElementById('bgColorBlue'),
+						    document.getElementById('bgColorYellow'),
+						    document.getElementById('bgColorGreen'),
+						    document.getElementById('bgColorPurple'),
+						    document.getElementById('bgColorWhite'),
+						    document.getElementById('bgColorBrown')];
+		
+		//setting initial brush selected to square brush and declaring drawTimer global variable
+		//so it can be accessed by numerous methods
+		var brSelector = "square";
+		var drawTimer;
+
+		
+		//setting initial selection
+		brushArray[0].style.border = "3px solid #00FF00";
+		colorArray[0].style.border = "3px solid #00FF00";
+		bgColorArray[6].style.border = "3px solid #00FF00";
+		
+		//adding event listeners
+		//startdraw begins interval timer that draws shapes in selected color as long as button remains depressed
+		//stopdraw clears the interval timer that was drawing things as soon as mouse button is released
+		//updateCoords keeps track of mouse coordinates whenever mouse is moved
+		document.addEventListener("mousedown", startDraw);
+		document.addEventListener("mouseup", stopDraw);
+		document.addEventListener("mousemove", updateCoords);
+		
+		//resets brush selection to none, then changes border color to green to display new selection
+		//updates brush selector variable for use in other painting functions
+		//for square, circle or diag brushes it uses source-over to paint over old drawings
+		//for eraser, it uses destination out in order to erase old drawings
+		//passed x value is array number corresponding to color selection
+		function brushSelect(x){
+			resetSelection(4, 'brush');
+			brushArray[x].style.border = "3px solid #00FF00";
+			if(x === 0){
+				brSelector = "square";
+				ctx.globalCompositeOperation = "source-over";
+			}
+			else if(x === 1){
+				brSelector = "circle";
+				ctx.globalCompositeOperation = "source-over";
+			}
+			else if(x === 2){
+				brSelector = "diag";
+				ctx.globalCompositeOperation = "source-over";
+			}
+			else if(x === 3){
+				brSelector = "eraser";
+				ctx.globalCompositeOperation = "destination-out";
+			}
+		}
+		
+		//resets color selection to none, then changes border color to green to display new selection
+		//changes fill style and stroke style to new color for drawing on canvas
+		//passed x value is array number corresponding to color selection
+		function colorSelect(x){
+			resetSelection(8, 'color');
+			colorArray[x].style.border = "3px solid #00FF00";
+			//extracting proper values from colorArray for use in fillstyle and strokestyle
+			paintColor = window.getComputedStyle(colorArray[x], null).getPropertyValue("background-color");
+			ctx.fillStyle = paintColor;
+		    ctx.strokeStyle = paintColor;
+		}
+		
+		//resets bg color selection to none, then changes border color to green to display new selection
+		//changes canvas bgcolor to new value
+		//passed x value is array number corresponding to bg color selection
+		function bgColorSelect(x){
+			resetSelection(8, 'bgColor');
+			bgColorArray[x].style.border = "3px solid #00FF00";
+			//extracting proper values from bgcolorarray for use in setting new bg color
+			bgColor = window.getComputedStyle(bgColorArray[x], null).getPropertyValue("background-color");
+			canvas.style.backgroundColor = bgColor;
+		}
+		
+		//resets selection before new selection is made
+		//k is the length of the array, h is array type
+		function resetSelection(k, h){
+			if(h === 'brush'){
+				for(var t = 0; t < k; t = t + 1){
+					brushArray[t].style.border = "3px solid black";
+				}
+			}
+			else if(h === 'color'){
+				for(var t = 0; t < k; t = t + 1){
+					colorArray[t].style.border = "3px solid black";
+				}
+			}
+			else if(h === 'bgColor'){
+				for(var t = 0; t < k; t = t + 1){
+					bgColorArray[t].style.border = "3px solid black";
+				}
+			}
+		}
+		
+		//function that run everytime the mouse is moved (via event listener), keeps track of current mouse X and
+		//Y coordinates for use in other functions
+		function updateCoords(e){
+			x = e.clientX - 19;
+			y = e.clientY - 19;
+		}
+		
+		//function that runs whenever mouse button is depressed (via event listener), sets interval for painting
+		//shapes ever .001 millisecond so that the current shape is drawn at X Y coordinates repeatedly to make
+		//a smooth line
+		function startDraw(e){
+		drawTimer = setInterval(paintLine, 0.001);
+		}
+		
+		//function that uses brSelector variable to determine which shape to paint on the canvas, is
+		//repeated by the startDraw(e) function that sets an interval using this method
+		function paintLine(){
+			//if square brush is selected, make 5px X 5px square at the current
+			//mouse location specified by X Y coordinates
+			if(brSelector === "square"){
+				ctx.beginPath();
+				ctx.fillRect(x,y,5,5);
+			}
+			
+			//if circle brush is selected, make a solid 2.5px radius circle
+			//ar current mouse location specified by X Y coordinates
+			else if(brSelector === "circle" || brSelector === "eraser"){
+				ctx.beginPath();
+				ctx.arc(x, y, 2.5, 0, 2 * Math.PI);
+				ctx.fill();
+			}
+		
+			//if diagonal brush is selected, make a diagonal px line between
+			//coordinates x-2.5,y+2.5  and x+2.5, y-2.5, at current mouse location X Y
+			else if(brSelector === "diag"){
+				ctx.beginPath();
+				ctx.moveTo(x-2.5,y+2.5);
+				ctx.lineTo(x+2.5,y-2.5);
+				ctx.stroke();
+			}
+		
+		}
+		
+		//function called when the event listener notices that the left mouse button is released
+		//clears the painting interval, stops shapes from being drawn at mouse location on canvas
+		function stopDraw(e){
+			clearInterval(drawTimer);
+		}
+	</script>
+	
+</body>
+
+</html>
