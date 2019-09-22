@@ -1,0 +1,188 @@
+div{
+	position: absolute;
+	display: inline;
+	border-style: solid;
+	border-color: black;
+	border-width: 3px;
+}
+
+#container{
+	min-height: 525px;
+	min-width: 762px;
+	background-color: #DCDCDC;
+}
+
+#brushContainer{
+	left: 525px;
+	top: 10px;
+	min-height: 110px;
+	min-width: 221px;
+}
+
+#colorPickerContainer{
+	left: 525px;
+	top: 150px;
+	min-height: 165px;
+	min-width: 221px;
+}
+
+#bgColorPickerContainer{
+	left: 525px;
+	top: 345px;
+	min-height: 165px;
+	min-width: 221px;
+}
+
+#labelBrushPicker{
+	min-height: 50px;
+	min-width: 216px;
+	background-color: white;
+}
+#brushSquare{
+	min-height: 50px;
+	min-width: 50px;
+	top: 55px;
+	left: 0px;
+}
+#brushCircle{
+	min-height: 50px;
+	min-width: 50px;
+	top: 55px;
+	left: 55px;
+}
+#brushDiag{
+	min-height: 50px;
+	min-width: 50px;
+	top: 55px;
+	left: 110px;
+}
+#brushEraser{
+	min-height: 50px;
+	min-width: 50px;
+	top: 55px;
+	left: 165px;
+}
+
+#labelColorPicker{
+	min-height: 50px;
+	min-width: 216px;
+	background-color: white;
+}
+#colorBlack{
+	min-height: 50px;
+	min-width: 50px;
+	top: 55px;
+	left: 0px;
+	background-color: #000000;
+}
+#colorRed{
+	min-height: 50px;
+	min-width: 50px;
+	top: 55px;
+	left: 55px;
+	background-color: #FF0000;
+}
+#colorBlue{
+	min-height: 50px;
+	min-width: 50px;
+	top: 55px;
+	left: 110px;
+	background-color: #0000FF;
+}
+#colorYellow{
+	min-height: 50px;
+	min-width: 50px;
+	top: 55px;
+	left: 165px;
+	background-color: #FFFF00;
+}
+#colorGreen{
+	min-height: 50px;
+	min-width: 50px;
+	top: 110px;
+	left: 0px;
+	background-color: #00FF00;
+}
+#colorPurple{
+	min-height: 50px;
+	min-width: 50px;
+	top: 110px;
+	left: 55px;
+	background-color: #663399;
+}
+#colorWhite{
+	min-height: 50px;
+	min-width: 50px;
+	top: 110px;
+	left: 110px;
+	background-color: #FFFFFF;
+}
+#colorBrown{
+	min-height: 50px;
+	min-width: 50px;
+	top: 110px;
+	left: 165px;
+	background-color: #8B4513;
+}
+
+#labelBgColorPicker{
+	min-height: 50px;
+	min-width: 216px;
+	background-color: white;
+}
+#bgColorBlack{
+	min-height: 50px;
+	min-width: 50px;
+	top: 55px;
+	left: 0px;
+	background-color: #D3D3D3;
+}
+#bgColorRed{
+	min-height: 50px;
+	min-width: 50px;
+	top: 55px;
+	left: 55px;
+	background-color: #FFB6C1;
+}
+#bgColorBlue{
+	min-height: 50px;
+	min-width: 50px;
+	top: 55px;
+	left: 110px;
+	background-color: #E0FFFF;
+}
+#bgColorYellow{
+	min-height: 50px;
+	min-width: 50px;
+	top: 55px;
+	left: 165px;
+	background-color: #FAFAD2;
+}
+#bgColorGreen{
+	min-height: 50px;
+	min-width: 50px;
+	top: 110px;
+	left: 0px;
+	background-color: #F5FFFA;
+}
+#bgColorPurple{
+	min-height: 50px;
+	min-width: 50px;
+	top: 110px;
+	left: 55px;
+	background-color: #DDA0DD;
+}
+#bgColorWhite{
+	min-height: 50px;
+	min-width: 50px;
+	top: 110px;
+	left: 110px;
+	background-color: #FFFFFF;
+}
+#bgColorBrown{
+	min-height: 50px;
+	min-width: 50px;
+	top: 110px;
+	left: 165px;
+	background-color: #FFE4B5;
+}
